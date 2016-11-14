@@ -1,0 +1,96 @@
+<html>
+<head>
+	<script>
+	var send = function(key) {
+	chrome.experimental.socket.create('tcp', '127.0.0.1', 8765, function(socketInfo) {
+  					chrome.experimental.socket.connect(socketInfo.socketId, function (result) {
+        			chrome.experimental.socket.write(socketInfo.socketId, key);
+    			}
+    		);	
+		}	
+	
+	});
+
+
+/*
+navigator.tcpPermission.requestPermission({remoteAddress:"127.0.0.1", remotePort:6789}).then(
+  () => {
+    // Permission was granted
+    // Create a new TCP client socket and connect to remote host
+    var mySocket = new TCPSocket("127.0.0.1", 6789);
+
+    // Send data to server
+    mySocket.writeable.write("Hello World").then(
+        () => {
+
+            // Data sent sucessfully, wait for response
+            console.log("Data has been sent to server");
+            mySocket.readable.getReader().read().then(
+                ({ value, done }) => {
+                    if (!done) {
+                        // Response received, log it:
+                        console.log("Data received from server:" + value);
+                    }
+
+                    // Close the TCP connection
+                    mySocket.close();
+                }
+            );
+        },
+        e => console.error("Sending error: ", e);
+    );
+*/	
+	</script>
+</head>
+<table>
+	<tr>
+    	<td><button onclick="send("0x70")">F1</button></td>
+    	<td></td>
+    	<td></td>
+    	<td></td>
+    	<td></td>
+    	<td><button onclick="send("0x73")">F4</button></td>
+  	</tr>
+  	<tr>
+  		<td><button onclick="send("0x71")">F2</button></td>
+    	<td></td>
+    	<td></td>
+    	<td></td>
+    	<td></td>
+    	<td><button onclick="send("0x74")">F5</button></td>
+  	</tr>
+  	<tr>
+  		<td><button onclick="send("0x72")">F3</button></td>
+    	<td></td>
+    	<td></td>
+    	<td></td>
+    	<td></td>
+    	<td><button onclick="send("0x75")">F6</button></td>
+  	</tr>  	
+  	<tr>
+  		<td></td>
+  		<td></td>
+    	<td><button onclick="send("0x61")">1</button></td>
+    	<td><button onclick="send("0x62")">2</button></td>
+    	<td><button onclick="send("0x63")">3</button></td>
+    	<td><button onclick="send("0x0D")">Enter</button></td>
+  	</tr>
+  	 <tr>
+  		<td></td>
+    	<td><td><button onclick="send("0x64")">4</button></td></td>
+    	<td><button onclick="send("0x65")">5</button></td>
+    	<td><button onclick="send("0x66")">6</button></td>
+    	<td><button onclick="send("0x60")">0</button></td>
+  	</tr>
+  	 <tr>
+  		<td><button onclick="send("0x7B")">F12</td>
+    	<td><td><button onclick="send("0x67")">7</button></td></td>
+    	<td><button onclick="send("0x68")">8</button></td>
+    	<td><button onclick="send("0x69")">9</button></td>
+    	<td><button onclick="send("0x1B")">Esc</button></td>
+  	</tr>  	
+</table>
+
+<a href="https://msdn.microsoft.com/ru-ru/library/windows/desktop/dd375731(v=vs.85).aspx">Коды клавиш</a>
+<div id="log"></div>
+</html>
